@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrainFind — AI Brain Tumor Detection</title>
+    <meta name="description"
+        content="Advanced AI-powered brain tumor detection from MRI scans using deep learning. Upload, analyze, and get instant results.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <div class="bg-orb bg-orb-1"></div>
+        <div class="bg-orb bg-orb-2"></div>
+        <div class="bg-orb bg-orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="nav-logo-link">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none">
+                        <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" stroke-width="2.5" />
+                        <path d="M20 8C20 8 14 14 14 20C14 26 20 32 20 32C20 32 26 26 26 20C26 14 20 8 20 8Z"
+                            fill="url(#logoGrad)" opacity="0.6" />
+                        <circle cx="20" cy="20" r="4" fill="url(#logoGrad)" />
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#6C63FF" />
+                                <stop offset="100%" stop-color="#00D2FF" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">Brain<span class="logo-highlight">Find</span></span>
+            </a>
+            <div class="nav-links">
+                <a href="#" class="nav-link active" data-page="home" id="nav-home">Home</a>
+                <a href="#" class="nav-link" data-page="login" id="nav-login">Login</a>
+                <a href="#" class="nav-link" data-page="register" id="nav-register">Register</a>
+                <a href="#" class="nav-link hidden" data-page="upload" id="nav-upload">Analyze</a>
+                <a href="#" class="nav-link hidden" data-page="records" id="nav-records">Records</a>
+                <button class="nav-btn hidden" id="nav-logout">Logout</button>
+            </div>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ==================== HOME PAGE ==================== -->
+    <section class="page active" id="page-home">
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    AI-Powered Medical Imaging
+                </div>
+                <h1 class="hero-title">
+                    Detect Brain Tumors<br>
+                    <span class="gradient-text">With Precision AI</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Upload MRI scans and get instant, accurate brain tumor detection powered by
+                    advanced deep learning. Built with MobileNetV2 architecture for reliable results.
+                </p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-lg" id="hero-get-started">
+                        Get Started
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+                    <button class="btn btn-glass btn-lg" id="hero-learn-more">
+                        Learn More
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number" data-count="98.5">0</span><span class="stat-suffix">%</span>
+                        <span class="stat-label">Accuracy</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="10000">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Scans Analyzed</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat">
+                        <span class="stat-number" data-count="2">0</span><span class="stat-suffix">s</span>
+                        <span class="stat-label">Avg. Response</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="brain-scan-card">
+                    <div class="scan-header">
+                        <div class="scan-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="scan-title">MRI Analysis</span>
+                    </div>
+                    <div class="scan-body">
+                        <div class="scan-image-placeholder">
+                            <svg viewBox="0 0 200 200" fill="none">
+                                <circle cx="100" cy="100" r="80" stroke="rgba(108,99,255,0.3)" stroke-width="1"
+                                    stroke-dasharray="4 4" />
+                                <circle cx="100" cy="100" r="60" stroke="rgba(0,210,255,0.3)" stroke-width="1"
+                                    stroke-dasharray="4 4" />
+                                <circle cx="100" cy="100" r="40" stroke="rgba(108,99,255,0.5)" stroke-width="1.5" />
+                                <circle cx="100" cy="85" r="15" fill="rgba(108,99,255,0.2)"
+                                    stroke="rgba(108,99,255,0.6)" stroke-width="1" />
+                                <path d="M70 100 Q100 60 130 100 Q100 140 70 100Z" fill="rgba(0,210,255,0.1)"
+                                    stroke="rgba(0,210,255,0.4)" stroke-width="1" />
+                            </svg>
+                            <div class="scan-pulse"></div>
+                        </div>
+                        <div class="scan-results">
+                            <div class="scan-result-item">
+                                <span class="result-dot positive"></span>
+                                <span>Detection Active</span>
+                            </div>
+                            <div class="scan-result-item">
+                                <span class="result-dot processing"></span>
+                                <span>Confidence: 97.3%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="features-section" id="features">
+            <h2 class="section-title">How It <span class="gradient-text">Works</span></h2>
+            <p class="section-subtitle">Three simple steps to get your analysis results</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <rect x="6" y="6" width="36" height="36" rx="8" stroke="url(#fg1)" stroke-width="2" />
+                            <path d="M18 24L22 28L30 20" stroke="url(#fg1)" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="fg1" x1="6" y1="6" x2="42" y2="42">
+                                    <stop stop-color="#6C63FF" />
+                                    <stop offset="1" stop-color="#00D2FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>1. Create Account</h3>
+                    <p>Sign up securely to access the AI-powered tumor detection system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <path d="M24 8L24 28M16 20L24 28L32 20" stroke="url(#fg2)" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M8 32V36C8 38.2091 9.79086 40 12 40H36C38.2091 40 40 38.2091 40 36V32"
+                                stroke="url(#fg2)" stroke-width="2.5" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="fg2" x1="8" y1="8" x2="40" y2="40">
+                                    <stop stop-color="#6C63FF" />
+                                    <stop offset="1" stop-color="#00D2FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>2. Upload MRI</h3>
+                    <p>Upload your brain MRI scan image in JPEG, PNG, or DICOM format.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="24" r="16" stroke="url(#fg3)" stroke-width="2" />
+                            <path d="M24 16V24L30 28" stroke="url(#fg3)" stroke-width="2.5" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                            <defs>
+                                <linearGradient id="fg3" x1="8" y1="8" x2="40" y2="40">
+                                    <stop stop-color="#6C63FF" />
+                                    <stop offset="1" stop-color="#00D2FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h3>3. Get Results</h3>
+                    <p>Receive instant AI analysis with confidence scores and detailed insights.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== LOGIN PAGE ==================== -->
+    <section class="page" id="page-login">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="18" r="8" stroke="url(#ag1)" stroke-width="2.5" />
+                            <path d="M10 40C10 33.3726 16.268 28 24 28C31.732 28 38 33.3726 38 40" stroke="url(#ag1)"
+                                stroke-width="2.5" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="ag1" x1="10" y1="10" x2="38" y2="40">
+                                    <stop stop-color="#6C63FF" />
+                                    <stop offset="1" stop-color="#00D2FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Welcome Back</h2>
+                    <p>Sign in to continue analyzing MRI scans</p>
+                </div>
+                <form class="auth-form" id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="2" y="4" width="20" height="16" rx="3" />
+                                <path d="M2 7L12 13L22 7" />
+                            </svg>
+                            <input type="email" id="login-email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            <input type="password" id="login-password" placeholder="••••••••" required>
+                            <button type="button" class="toggle-password" data-target="login-password">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-options">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="remember-me">
+                            <span class="checkmark"></span>
+                            Remember me
+                        </label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="login-submit">
+                        <span class="btn-text">Sign In</span>
+                        <div class="btn-loader hidden"></div>
+                    </button>
+                    <div class="auth-error hidden" id="login-error"></div>
+                </form>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" id="goto-register">Create one</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== REGISTER PAGE ==================== -->
+    <section class="page" id="page-register">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <div class="auth-icon">
+                        <svg viewBox="0 0 48 48" fill="none">
+                            <circle cx="24" cy="18" r="8" stroke="url(#ag2)" stroke-width="2.5" />
+                            <path d="M10 40C10 33.3726 16.268 28 24 28C31.732 28 38 33.3726 38 40" stroke="url(#ag2)"
+                                stroke-width="2.5" stroke-linecap="round" />
+                            <path d="M36 14V22M32 18H40" stroke="url(#ag2)" stroke-width="2.5" stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="ag2" x1="10" y1="10" x2="40" y2="42">
+                                    <stop stop-color="#6C63FF" />
+                                    <stop offset="1" stop-color="#00D2FF" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Create Account</h2>
+                    <p>Join BrainFind to start analyzing MRI scans</p>
+                </div>
+                <form class="auth-form" id="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="reg-firstname">First Name</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
+                                </svg>
+                                <input type="text" id="reg-firstname" placeholder="John" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-lastname">Last Name</label>
+                            <div class="input-wrapper">
+                                <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="1.5">
+                                    <circle cx="12" cy="8" r="4" />
+                                    <path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
+                                </svg>
+                                <input type="text" id="reg-lastname" placeholder="Doe" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-email">Email Address</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="2" y="4" width="20" height="16" rx="3" />
+                                <path d="M2 7L12 13L22 7" />
+                            </svg>
+                            <input type="email" id="reg-email" placeholder="you@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-password">Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            <input type="password" id="reg-password" placeholder="Min. 6 characters" required
+                                minlength="6">
+                            <button type="button" class="toggle-password" data-target="reg-password">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                    <circle cx="12" cy="12" r="3" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="password-strength" id="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill" id="strength-fill"></div>
+                            </div>
+                            <span class="strength-text" id="strength-text"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg-confirm">Confirm Password</label>
+                        <div class="input-wrapper">
+                            <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <rect x="3" y="11" width="18" height="11" rx="2" />
+                                <path d="M7 11V7a5 5 0 0110 0v4" />
+                            </svg>
+                            <input type="password" id="reg-confirm" placeholder="Re-enter password" required>
+                        </div>
+                    </div>
+                    <label class="checkbox-label terms-label">
+                        <input type="checkbox" id="agree-terms" required>
+                        <span class="checkmark"></span>
+                        I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+                    </label>
+                    <button type="submit" class="btn btn-primary btn-full" id="register-submit">
+                        <span class="btn-text">Create Account</span>
+                        <div class="btn-loader hidden"></div>
+                    </button>
+                    <div class="auth-error hidden" id="register-error"></div>
+                    <div class="auth-success hidden" id="register-success"></div>
+                </form>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" id="goto-login">Sign in</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== UPLOAD / PREDICT PAGE ==================== -->
+    <section class="page" id="page-upload">
+        <div class="upload-container">
+            <div class="upload-header">
+                <h1>MRI Scan <span class="gradient-text">Analysis</span></h1>
+                <p>Upload a brain MRI image to detect potential tumors using AI</p>
+            </div>
+
+            <div class="upload-content">
+                <!-- Upload Area -->
+                <div class="upload-area-wrapper">
+                    <div class="upload-dropzone" id="upload-dropzone">
+                        <div class="dropzone-content" id="dropzone-content">
+                            <div class="dropzone-icon">
+                                <svg viewBox="0 0 64 64" fill="none">
+                                    <rect x="8" y="8" width="48" height="48" rx="12" stroke="url(#upGrad)"
+                                        stroke-width="2" stroke-dasharray="6 4" />
+                                    <path d="M32 22V42M24 30L32 22L40 30" stroke="url(#upGrad)" stroke-width="2.5"
+                                        stroke-linecap="round" stroke-linejoin="round" />
+                                    <defs>
+                                        <linearGradient id="upGrad" x1="8" y1="8" x2="56" y2="56">
+                                            <stop stop-color="#6C63FF" />
+                                            <stop offset="1" stop-color="#00D2FF" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                            <h3>Drag & Drop MRI Scan</h3>
+                            <p>or click to browse files</p>
+                            <span class="file-types">Supports: JPG, PNG, BMP</span>
+                        </div>
+                        <div class="dropzone-preview hidden" id="dropzone-preview">
+                            <img id="preview-image" alt="MRI Preview">
+                            <button class="remove-image" id="remove-image" title="Remove image">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M18 6L6 18M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <input type="file" id="file-input" accept="image/*" hidden>
+                    </div>
+                    <button class="btn btn-primary btn-lg btn-full" id="analyze-btn" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="M21 21l-4.35-4.35" />
+                        </svg>
+                        <span class="btn-text">Analyze Scan</span>
+                        <div class="btn-loader hidden"></div>
+                    </button>
+                </div>
+
+                <!-- Results Area -->
+                <div class="results-panel hidden" id="results-panel">
+                    <div class="results-header">
+                        <h2>Analysis Results</h2>
+                        <div style="display: flex; gap: 8px; align-items: center;">
+                            <button class="btn btn-primary btn-sm" id="save-case-btn" style="background: linear-gradient(135deg, #10b981, #059669); border: none; font-weight: 600; padding: 8px 16px;">Save Case</button>
+                            <button class="btn btn-glass btn-sm hidden" id="delete-case-btn" style="background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.4); color: #ef4444; font-weight: 600; padding: 8px 16px;">Delete Case</button>
+                            <button class="btn btn-glass btn-sm" id="new-scan-btn">New Scan</button>
+                        </div>
+                    </div>
+
+                    <div class="result-card" id="result-card">
+                        <div class="result-status" id="result-status">
+                            <div class="status-icon" id="status-icon"></div>
+                            <h3 id="result-label"></h3>
+                            <p id="result-description"></p>
+                        </div>
+
+                        <div class="confidence-meter">
+                            <div class="confidence-header">
+                                <span>Confidence Score</span>
+                                <span class="confidence-value" id="confidence-value">0%</span>
+                            </div>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill" id="confidence-fill"></div>
+                            </div>
+                        </div>
+
+                        <div class="result-details">
+                            <div class="detail-item">
+                                <span class="detail-label">Model</span>
+                                <span class="detail-value">MobileNetV2</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Analysis Time</span>
+                                <span class="detail-value" id="analysis-time">—</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Image Size</span>
+                                <span class="detail-value" id="image-size">—</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Highlighted Scan Image -->
+                    <div class="highlighted-scan-wrapper hidden" id="highlighted-scan-wrapper">
+                        <div class="highlighted-scan-header">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+                            <span>AI Scan Analysis — Highlighted Region</span>
+                        </div>
+                        <div class="highlighted-scan-body">
+                            <img id="highlighted-scan-img" alt="Highlighted MRI Scan" />
+                            <div class="highlighted-scan-legend" id="highlighted-scan-legend"></div>
+                        </div>
+                    </div>
+
+                    <div class="result-disclaimer">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="16"
+                            height="16">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 8v4M12 16h.01" />
+                        </svg>
+                        <p>This is an AI-assisted analysis tool and should not replace professional medical diagnosis.
+                            Always consult with a qualified healthcare provider.</p>
+                    </div>
+                </div>
+        </div>
+    </section>
+
+    <!-- ==================== RECORDS / HISTORY PAGE ==================== -->
+    <section class="page" id="page-records">
+        <div class="upload-container" style="max-width: 1100px; margin-top: 40px; padding: 0 20px;">
+            <!-- Saved Clinical Cases Log Section -->
+            <div class="history-section" id="history-section" style="background: rgba(30, 30, 45, 0.45); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; box-shadow: 0 8px 32px 0 rgba(0,0,0,0.25);">
+                <div class="history-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6C63FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                        <h2 style="font-family: 'Outfit', sans-serif; font-size: 1.45rem; margin: 0; color: #fff; font-weight: 600;">Saved Clinical Cases Log</h2>
+                    </div>
+                    <button class="btn btn-glass btn-sm" id="clear-history-btn" style="font-size: 0.82rem; padding: 8px 16px; border-color: rgba(239, 68, 68, 0.4); color: #ef4444; font-weight: 600;">Clear All Logs</button>
+                </div>
+                <div class="history-table-wrapper" style="overflow-x: auto;">
+                    <table class="history-table" style="width: 100%; border-collapse: collapse; text-align: left; font-family: 'Inter', sans-serif; font-size: 0.9rem;">
+                        <thead>
+                            <tr style="border-bottom: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); font-weight: 500;">
+                                <th style="padding: 12px 8px;">Patient ID / Ref</th>
+                                <th style="padding: 12px 8px;">Date & Time</th>
+                                <th style="padding: 12px 8px;">Diagnosis</th>
+                                <th style="padding: 12px 8px;">Confidence</th>
+                                <th style="padding: 12px 8px;">Est. Dimensions</th>
+                                <th style="padding: 12px 8px; text-align: right;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body" style="color: #fff;">
+                            <tr>
+                                <td colspan="6" style="padding: 24px 8px; text-align: center; color: rgba(255,255,255,0.4);">No saved patient reports found. Save a case to store it.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
